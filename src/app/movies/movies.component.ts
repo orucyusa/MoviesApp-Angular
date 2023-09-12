@@ -7,8 +7,8 @@ import { MovieService } from '../movie.service';
 })
 export class MoviesComponent {
   title = 'Movie List';
-  movies: Movie[] | undefined;
-  selectedMovie: Movie | undefined;
+  movies: Movie[];
+  selectedMovie: Movie;
 
   constructor(private movieService: MovieService) {}
 
@@ -24,5 +24,13 @@ export class MoviesComponent {
     this.movieService.getMovies().subscribe((movies) => {
       this.movies = movies;
     });
+  }
+
+  add(name: string, imageUrl:string, description:string): void{
+    this.movieService.add({
+      name,
+      imageUrl,
+      description
+    }as Movie).subscribe(movie => this.movies.push(movie));
   }
 }
