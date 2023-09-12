@@ -1,28 +1,28 @@
-import { Component } from "@angular/core";
-import { Movie } from "../movie";
-import { MovieService } from "../movie.service";
+import { Component } from '@angular/core';
+import { Movie } from '../movie';
+import { MovieService } from '../movie.service';
 @Component({
-    selector: 'movies',
-    templateUrl: 'movies.component.html'
+  selector: 'movies',
+  templateUrl: 'movies.component.html',
 })
-
 export class MoviesComponent {
-    title= 'Movie List';
-    movies :Movie[] | undefined;
-    selectedMovie: Movie | undefined;
+  title = 'Movie List';
+  movies: Movie[] | undefined;
+  selectedMovie: Movie | undefined;
 
-    constructor(private movieService: MovieService) { } 
+  constructor(private movieService: MovieService) {}
 
-    ngOnInit () : void {
-        this.getMovies();
-    }
+  ngOnInit(): void {
+    this.getMovies();
+  }
 
-    onSelect(movie:Movie):void{
-        this.selectedMovie = movie;
-    }
+  onSelect(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
 
-    getMovies(): void {
-        this.movies = this.movieService.getMovies();
-    }
-
+  getMovies(): void {
+    this.movieService.getMovies().subscribe((movies) => {
+      this.movies = movies;
+    });
+  }
 }
