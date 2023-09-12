@@ -5,11 +5,9 @@
         {{title}}
     </div>
     <ul class="list-group list-group-flush">
-        <li *ngFor="let movie of movies" (click)="onSelect(movie)" 
+        <li *ngFor="let movie of movies" 
         class="list-group-item"
-        [class.active]="movie===selectedMovie"
-        
-        >
+        routerLink="/detail/{{movie.id}}">
             <span class="yellow badge-primary">{{movie.id}}</span> {{movie.name}}
             <span class="close">x</span>
         </li>
