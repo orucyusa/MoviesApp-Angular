@@ -8,9 +8,6 @@ import { LoggingService } from './logging.service';
   providedIn: 'root'
 })
 export class MovieService {
-
-  
-
   constructor(private loggingService: LoggingService) { }
 
   getMovies(): Observable<Movie[]> {
